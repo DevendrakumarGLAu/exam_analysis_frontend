@@ -1,7 +1,7 @@
 [
-  { "key": "answerKeyUrl", "label": "Answer Key URL", "type": "text", "required": true },
+  { "key": "url", "label": "Answer Key URL", "type": "text", "required": true },
   { "key": "category", "label": "Category", "type": "select", "options": ["UR", "OBC", "EWS", "SC", "ST"], "required": true },
-  { "key": "horizontalCategory", "label": "Horizontal Category", "type": "select", "options": ["None","OH", "PH"], "required": false },
-  { "key": "paperLanguage", "label": "Paper Language", "type": "radio", "options": ["Hindi", "English"], "required": true },
+  { "key": "Horizontalcategory", "label": "Horizontal Category", "type": "select", "options": ["None","OH", "PH"], "required": false },
+  { "key": "Exam_Language", "label": "Paper Language", "type": "radio", "options": ["Hindi", "English"], "required": true },
   { "key": "password", "label": "Password", "type": "password", "required": true }
 ]

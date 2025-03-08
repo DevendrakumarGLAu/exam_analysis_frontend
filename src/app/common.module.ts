@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatTableModule } from '@angular/material/table';  // Example for Angular Material Table
-// import { MatInputModule } from '@angular/material/input';  // Example for Material Input
-// import { MatButtonModule } from '@angular/material/button'; // Example for Buttons
-// import { MatSelectModule } from '@angular/material/select'; // Example for Select dropdown
+import {
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -12,11 +11,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class CommonAppModule { }
