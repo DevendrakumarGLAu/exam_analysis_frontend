@@ -8,10 +8,11 @@ import { SscCglComponent } from './ssc-cgl/ssc-cgl.component';
 import { CommonAppModule } from './common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-
+import { LoaderComponent } from './common/header/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoaderComponent,
     HeaderComponent,
     SscCglComponent
   ],
