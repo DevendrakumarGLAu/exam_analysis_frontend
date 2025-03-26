@@ -1,0 +1,81 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ExamService } from '../services/exam.service';
+import { SnackbarService } from '../services/snackbar.service';
+import { ActivatedRoute } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
+
+@Component({
+  selector: 'app-rrb-constable',
+  templateUrl: './rrb-constable.component.html',
+  styleUrls: ['./rrb-constable.component.css']
+})
+export class RrbConstableComponent implements OnInit{
+  examForm!: FormGroup;
+  selectedExam: string = '';
+  formFields: any[] = [];
+  formConfig: any = {};
+  exam_type: string = '';
+  response_data :any = null;
+  isLoading :boolean = false
+  constructor(private fb: FormBuilder, private http: HttpClient, private examService: ExamService,
+    private snackbarService: SnackbarService, private route: ActivatedRoute ,private loaderService: LoaderService
+  ) {
+    this.exam_type = this.route.snapshot.url[0]?.path; 
+  }
+  ngOnInit(): void {
+    this.loadFormConfig();
+  }
+  loadFormConfig() {
+    this.http.get('/assets/rrb-form-config.json').subscribe((config: any) => {
+      this.formFields = config || [];
+
+      this.examForm = this.fb.group({});
+      this.formFields.forEach((field) => {
+        this.examForm.addControl(
+          field.key,
+          this.fb.control('', field.required ? Validators.required : null)
+        );
+      });
+
+      this.loadFormData();
+    });
+  }
+
+  loadFormData() {
+    const storedData = localStorage.getItem('examFormData');
+    if (storedData) {
+      this.examForm.patchValue(JSON.parse(storedData));
+    }
+  }
+
+  onSubmit() {
+    if (this.examForm.valid) {
+      this.loaderService.showLoader();
+      this.isLoading = true;
+      const payload = {
+        ...this.examForm.value, // Spread existing form values
+        exam_type: 'rrb_constable' // Add exam_type explicitly
+      };
+      this.examService.rrbConstable(payload).subscribe({
+        next: (response) => {
+          this.response_data = response
+          this.isLoading = false;
+          console.log('Submitted Data:', response);
+          localStorage.setItem('examFormData', JSON.stringify(this.examForm.value));
+          this.snackbarService.showSuccess('Data fetched successfully!');
+          this.loaderService.hideLoader(); // Hide loader
+        },
+        error: (error) => {
+          this.isLoading = false;
+          console.error('Error:', error);
+          this.snackbarService.showError('Failed to submit form. Please try again.');
+          this.loaderService.hideLoader(); // Hide loader
+        }
+      });
+    } else {
+      this.snackbarService.showError('Please fill all required fields');
+    }
+  }
+}

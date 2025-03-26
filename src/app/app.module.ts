@@ -9,12 +9,14 @@ import { CommonAppModule } from './common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { LoaderComponent } from './common/header/loader/loader.component';
+import { RrbConstableComponent } from './rrb-constable/rrb-constable.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoaderComponent,
     HeaderComponent,
-    SscCglComponent
+    SscCglComponent,
+    RrbConstableComponent
   ],
   imports: [
     BrowserModule,

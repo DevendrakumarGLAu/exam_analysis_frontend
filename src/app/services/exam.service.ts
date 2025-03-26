@@ -13,4 +13,8 @@ export class ExamService {
     return this.http.post(`${this.apiUrl}/ssc-exam-data`, data);
   }
 
+  rrbConstable(data:any):Observable<any>{
+    return this.http.post(`${this.apiUrl}/rrb-constable-exam-data`,data)
+  }
+
 }

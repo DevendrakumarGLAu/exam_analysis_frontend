@@ -1,0 +1,8 @@
+[
+    { "key": "url", "label": "Answer Key URL", "type": "text", "required": true },
+    { "key": "category", "label": "Category", "type": "select", "options": ["UR", "OBC", "EWS", "SC", "ST"], "required": true },
+    { "key": "Horizontalcategory", "label": "Horizontal Category", "type": "select", "options": ["None","OH", "PH"], "required": false },
+    { "key": "rrb_zone", "label": "RRB Zone", "type": "select", "options": ["Prayagraj", "Bhopal"], "required": true },
+    { "key": "Exam_Language", "label": "Paper Language", "type": "radio", "options": ["Hindi", "English"], "required": true },
+    { "key": "password", "label": "Password", "type": "password", "required": true }
+  ]
