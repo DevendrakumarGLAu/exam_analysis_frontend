@@ -23,13 +23,6 @@ isLoading :boolean = false
     private snackbarService: SnackbarService, private route: ActivatedRoute ,private loaderService: LoaderService
   ) {
     this.exam_type = this.route.snapshot.url[0]?.path; 
-    // this.examForm = this.fb.group({
-    //   answerKeyUrl: ['', Validators.required],
-    //   category: ['', Validators.required],
-    //   horizontalCategory: ['', Validators.required],
-    //   paperLanguage: ['', Validators.required],
-    //   password: ['']
-    // });
   }
 
   ngOnInit(): void {
@@ -50,7 +43,6 @@ isLoading :boolean = false
         );
       });
 
-      // Now load the stored form data after form is fully initialized
       this.loadFormData();
     });
   }
@@ -68,7 +60,7 @@ isLoading :boolean = false
       this.isLoading = true;
       const payload = {
         ...this.examForm.value, // Spread existing form values
-        exam_type: this.exam_type // Add exam_type explicitly
+        exam_type: 'cgl_mains' // Add exam_type explicitly
       };
       this.examService.saveExamData(payload).subscribe({
         next: (response) => {
@@ -76,7 +68,7 @@ isLoading :boolean = false
           this.isLoading = false;
           console.log('Submitted Data:', response);
           localStorage.setItem('examFormData', JSON.stringify(this.examForm.value));
-          this.snackbarService.showSuccess('Form submitted successfully!');
+          this.snackbarService.showSuccess('Data fetched successfully!');
           this.loaderService.hideLoader(); // Hide loader
         },
         error: (error) => {

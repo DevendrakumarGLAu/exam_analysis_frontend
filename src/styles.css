@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-.snackbar-success {
+::ng-deep .snackbar-success {
     background-color: #4caf50 !important; /* Green */
     color: white;
   }
   
-  .snackbar-error {
+  ::ng-deep .snackbar-error {
     background-color: #f44336 !important; /* Red */
     color: white;
   }

@@ -4,6 +4,7 @@ import { SscCglComponent } from './ssc-cgl/ssc-cgl.component';
 
 const routes: Routes = [
   {path:'ssc-cgl', component:SscCglComponent},
+  {path:'ssc-cgl-II', component:SscCglComponent},
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];  
 
